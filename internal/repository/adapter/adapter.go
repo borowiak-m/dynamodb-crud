@@ -16,7 +16,7 @@ type Interface interface {
 	Health() bool
 	FindAll(condition expression.Expression, tableName string) (response *dynamodb.ScanOutput, err error)
 	FindOne(condition map[string]interface{}, tableName string) (response *dynamodb.GetItemOutput, err error)
-	CreateOrUpdate(entiry interface{}, tablwName string) (response *dynamodb.PutItemOutput, err error)
+	CreateOrUpdate(entiry interface{}, tableName string) (response *dynamodb.PutItemOutput, err error)
 	Delete(condition map[string]interface{}, tableName string) (response *dynamodb.DeleteItemOutput, err error)
 }
 
@@ -41,6 +41,7 @@ func (db *Database) FindAll(condition expression.Expression, tableName string) (
 		ProjectionExpression:      condition.Projection(),
 		TableName:                 aws.String(tableName),
 	}
+	return db.connection.GetItemInput(input)
 }
 
 func (db *Database) FindOne(condition map[string]interface{}, tableName string) (response *dynamodb.GetItemOutput, err error) {
