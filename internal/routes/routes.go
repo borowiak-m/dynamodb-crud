@@ -1,11 +1,14 @@
 package routes
 
 import (
-	"github.com/go-chi/chi"
-	"github.com/go-chi/middleware"
-	//ServerConfig "https://github.com/borowiak-m/dynamodb-crud/config"
-	//HealthHandler "https://github.com/borowiak-m/dynamodb-crud/internal/handlers/health"
-	//ProductHandler "https://github.com/borowiak-m/dynamodb-crud/internal/handlers/product"
+	"github.com/borowiak-m/dynamodb-crud/internal/repository/adapter"
+
+	ServerConfig "github.com/borowiak-m/dynamodb-crud/config/config"
+	HealthHandler "github.com/borowiak-m/dynamodb-crud/internal/handlers/health"
+	ProductHandler "github.com/borowiak-m/dynamodb-crud/internal/handlers/product"
+
+	"github.com/go-chi/chi/v5"
+	"github.com/go-chi/chi/v5/middleware"
 )
 
 type Router struct {
@@ -15,7 +18,7 @@ type Router struct {
 
 func NewRouter() *Router {
 	return &Router{
-		config: NewConfig().SetTimeout(serviceConfig.GetConfig().Timeout),
+		config: NewConfig().SetTimeout(ServerConfig.GetConfig().Timeout),
 		router: chi.NewRouter(),
 	}
 }
