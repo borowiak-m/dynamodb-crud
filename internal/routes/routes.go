@@ -1,14 +1,14 @@
 package routes
 
 import (
-	"github.com/borowiak-m/dynamodb-crud/internal/repository/adapter"
+	"dynamodb-crud/internal/repository/adapter"
 
-	ServerConfig "github.com/borowiak-m/dynamodb-crud/config/config"
-	HealthHandler "github.com/borowiak-m/dynamodb-crud/internal/handlers/health"
-	ProductHandler "github.com/borowiak-m/dynamodb-crud/internal/handlers/product"
+	ServerConfig "dynamodb-crud/config/config"
+	HealthHandler "dynamodb-crud/internal/handlers/health"
+	ProductHandler "dynamodb-crud/internal/handlers/product"
 
-	"github.com/go-chi/chi/v5"
-	"github.com/go-chi/chi/v5/middleware"
+	"github.com/go-chi/chi"
+	"github.com/go-chi/chi/middleware"
 )
 
 type Router struct {

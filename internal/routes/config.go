@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/go-chi/v5/cors"
+	"github.com/go-chi/cors"
 )
 
 type Config struct {
