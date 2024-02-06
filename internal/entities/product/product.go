@@ -19,7 +19,7 @@ func InterfaceToModel(data interface{}) (instance *Product, err error) {
 	return instance, json.Unmarshal(bytes, &instance)
 }
 
-func (p *Product) GetFildetId() map[string]interface{}
+func (p *Product) GetFilterId() map[string]interface{}
 
 func (p *Product) TableName() string
 
