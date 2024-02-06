@@ -1,29 +1,34 @@
 package product
 
 import (
-	"time"
-
-	"github.com/google/uuid"
+	"dynamodb-crud/internal/entities"
+	"encoding/json"
 )
 
-type Interface interface {
-	GenerateID()
-	SetCreatedAt()
-	SetUpdatedAt()
-	TableName() string
-	GetMap() map[string]interface{}
-	GetFildetId() map[string]interface{}
+type Product struct {
+	entities.Base
+	Name string `jason:"name"`
 }
 
-type Base struct {
-	ID        uuid.UUID `json:"_id"`
-	CreatedAt time.Time `json:"createdAt"`
-	UpdatedAt time.Time `json:"updatedAt"`
+func InterfaceToModel(data interface{}) (instance *Product, err error) {
+	bytes, err := json.Marshal(data)
+	if err != nil {
+		return instance, err
+	}
+
+	return instance, json.Unmarshal(bytes, &instance)
 }
 
-func (b *Base) GenerateID()
-func (b *Base) SetCreatedAt()
-func (b *Base) SetUpdatedAt()
-func (b *Base) TableName() string
-func (b *Base) GetMap() map[string]interface{}
-func (b *Base) GetFildetId() map[string]interface{}
+func (p *Product) GetFildetId() map[string]interface{}
+
+func (p *Product) TableName() string
+
+func (p *Product) Bytes() ([]byte, error) {
+	return json.Marshal(p)
+}
+
+func (p *Product) GetMap() map[string]interface{}
+
+func ParseDynamoAttributeToStruct() {
+
+}
